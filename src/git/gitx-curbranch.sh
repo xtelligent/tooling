@@ -1,0 +1,1 @@
+/usr/locaL/bin/gitx-curbranch
