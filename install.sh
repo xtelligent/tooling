@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 if [ $# -lt 1 ]; then
     printf "\n%s TOOLSET\n\tWhere toolset is 'git'. There will be other tools in the future.\n" "$0"
     exit 1
@@ -14,7 +14,7 @@ for F in "${SCRIPTS[@]}"; do
     SHORTNAME=$(basename "$FULLNAME" ".sh")
     echo "$SHORTNAME     -> $FULLNAME"
     LINKNAME="/usr/local/bin/$SHORTNAME"
-    if ln -s "$FULLNAME" "$LINKNAME"; then
+    if ln -sf "$FULLNAME" "$LINKNAME"; then
         chmod +x "$LINKNAME"
     fi
     # TEST
