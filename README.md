@@ -3,10 +3,10 @@ Tooling for code repositories.
 
 ## GitX commands
 
+Utilities to wrap the git CLI.
+
 ### Installation
 ``` bash
-# Assuming CODEROOT is set
-cd "$CODEROOT"
 git checkout https://github.com/xtelligent/tooling.git
 tooling/install.sh
 ```
