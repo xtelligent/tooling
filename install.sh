@@ -12,9 +12,8 @@ SCRIPTS=($(ls src/$1 | grep -E '\.sh'))
 for F in "${SCRIPTS[@]}"; do
     FULLNAME="$MYDIR/src/$1/$F"
     SHORTNAME=$(basename "$FULLNAME" ".sh")
-    echo "$SHORTNAME     -> $FULLNAME"
     LINKNAME="/usr/local/bin/$SHORTNAME"
-    if ln -sf "$FULLNAME" "$LINKNAME"; then
+    if ln -sf "$FULLNAME" "$LINKNAME" 2>/dev/null; then
         chmod +x "$LINKNAME"
     fi
     # TEST
