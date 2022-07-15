@@ -8,7 +8,7 @@ Utilities to wrap the git CLI.
 ### Installation
 ``` bash
 git checkout https://github.com/xtelligent/tooling.git
-tooling/install.sh
+tooling/install.sh git
 ```
 
 Lets assume you have a project `myapp`, and your terminal's current directory is at or under the root
