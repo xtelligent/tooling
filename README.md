@@ -7,7 +7,7 @@ Utilities to wrap the git CLI.
 
 ### Installation
 ``` bash
-git checkout https://github.com/xtelligent/tooling.git
+git clone https://github.com/xtelligent/tooling.git
 tooling/install.sh git
 ```
 

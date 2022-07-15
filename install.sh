@@ -6,6 +6,7 @@ if [ $# -lt 1 ]; then
 fi
 
 MYDIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$MYDIR"
 SCRIPTS=($(ls src/$1 | grep -E '\.sh'))
 
 for F in "${SCRIPTS[@]}"; do
