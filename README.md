@@ -19,7 +19,7 @@ for that project.
 ``` bash
 $ gitx-anychanged
 src/git/gitx-anychanged.sh PATHS [FLAGS] [COMMITNUMBER]
-        Returns true/0 if there's a change under one of the paths.
+        Returns true/0 if there is a change under one of the paths.
         PATHS: Paths to files or directories in the repository to check for any changes, delimited by |.
         FLAGS: Flags passed directly to gix-modlist command (-d|-n|-r).
         COMMITNUMBER: Commit passed directly to gix-modlist command.
@@ -29,6 +29,9 @@ $ echo $?
 $ gitx-anychanged otherfile.txt -dnr
 $ echo $?
 1
+# Pattern for build scripts to conditionally run a script. The
+# || at the end makes sure that the expression returns zero always.
+$ gitx-anychanged package.json && npm install || true
 ```
 Command to determine if their are any changes under the supplied paths. This example shows how to use
 
