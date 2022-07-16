@@ -1,6 +1,13 @@
 # Tooling
 Tooling for code repositories.
 
+## Patterns
+
+* The conditional execution pattern can be utilized during builds or in local tooling during development.
+It relies on `gitx-anychanged` and `x-whenhasdata` to evaluate if applicable code changes have taken
+place. If so, the parameters to `x-whenhasdata` are executed as a command line, similar to `xargs`, but
+with only one execution. See the command reference below for details and examples.
+
 ## GitX commands
 
 Utilities to wrap the git CLI.
@@ -17,30 +24,25 @@ for that project.
 ### Commands
 
 ``` bash
-$ gitx-anychanged
-src/git/gitx-anychanged.sh PATHS [FLAGS] [COMMITNUMBER]
-        Returns true/0 if there is a change under one of the paths.
-        PATHS: Paths to files or directories in the repository to check for any changes, delimited by |.
-        FLAGS: Flags passed directly to gix-modlist command (-d|-n|-r).
-        COMMITNUMBER: Commit passed directly to gix-modlist command.
-$ gitx-anychanged changedfile.txt|otherfile.txt -r
-$ echo $?
-0
-$ gitx-anychanged otherfile.txt -dnr
-$ echo $?
-1
-# Pattern for build scripts to conditionally run a script. The
-# || at the end makes sure that the expression returns zero always.
-$ gitx-anychanged package.json && npm install || true
-```
-Command to determine if their are any changes under the supplied paths. This example shows how to use
-
-
-``` bash
 $ gitx-curbranch
 main
 ```
 The command returns the current branch for the repository.
+
+``` bash
+$ gitx-anychanged
+src/git/gitx-matchchanges.sh PATHS [FLAGS] [COMMITNUMBER]
+        Prints any matching changes under any of the paths.
+        PATHS: Paths to files or directories in the repository to check for any changes, delimited by |.
+        FLAGS: Flags passed directly to gix-modlist command (-d|-n|-r).
+        COMMITNUMBER: Commit passed directly to gix-modlist command.$ gitx-anychanged src/changedfile.txt|src/otherfiles -r
+src/changedfile.txt
+$ gitx-anychanged src/otherfiles -dnr
+# Pattern for build scripts to conditionally run a script.
+$ gitx-anychanged package.json | x-whenhasdata npm install
+```
+Command to determine if their are any changes under the supplied paths. This example shows how to use
+
 
 ``` bash
 $ git-modlist -h
@@ -63,3 +65,26 @@ $ gitx-root
 /usr/local/code/myapp
 ```
 Returns the git root for the working directory.
+
+
+## General utilities
+
+Utilities to wrap the git CLI.
+
+### Installation
+``` bash
+git clone https://github.com/xtelligent/tooling.git
+tooling/install.sh utilities
+```
+
+### Commands
+
+``` bash
+$ x-whenhasdata COMMAND [ARGs] 
+        When data is piped in, it runs the command line.
+# Pattern for build scripts to conditionally run a script.
+$ gitx-anychanged package.json | x-whenhasdata npm install
+```
+The command is similar to `xargs`, but it will only one runs when
+it sees any data in the `/dev/stdin` pipe. Running the command without
+a pipe causes undefined behavior.
