@@ -17,6 +17,7 @@ Utilities to wrap the git CLI.
 git clone https://github.com/xtelligent/tooling.git
 tooling/install.sh git
 ```
+
 ---
 
 Lets assume you have a project `myapp`, and your terminal's current directory is at or under the root
@@ -29,7 +30,9 @@ $ gitx-curbranch
 main
 ```
 The command returns the current branch for the repository.
+
 ---
+
 ``` bash
 $ gitx-matchchanges
 gitx-matchchanges PATHS [FLAGS] [COMMITNUMBER]
@@ -46,7 +49,9 @@ $ gitx-matchchanges package.json | x-whenhasdata npm install
 Command to determine if there are any changes under the supplied paths. Note: when you use the | in
 the PATHS parameter, please quote the parameter! The shell will otherwise treat the character as
 a pipe operator.
+
 ---
+
 ``` bash
 $ git-modlist -h
 script usage: $0 [-d] [-n] [-r] [COMMITNUMBER]
@@ -62,12 +67,15 @@ README.md
 Returns a list of files that have changed or been created since the optional commit
 argument. If the `COMMITNUMBER` is omitted, the script finds the last commit on the
 branch `main`.
+
 ---
+
 ``` bash
 $ gitx-root
 /usr/local/code/myapp
 ```
 Returns the git root for the working directory.
+
 ---
 
 ## General utilities
@@ -79,6 +87,7 @@ Utilities to wrap the git CLI.
 git clone https://github.com/xtelligent/tooling.git
 tooling/install.sh utilities
 ```
+
 ---
 
 ### Commands
@@ -92,4 +101,5 @@ $ gitx-matchchanges package.json | x-whenhasdata npm install
 The command is similar to `xargs`, but it will only one runs when
 it sees any data in the `/dev/stdin` pipe. Running the command without
 a pipe causes undefined behavior.
+
 ---
